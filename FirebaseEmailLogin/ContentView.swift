@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("email") var app_storage_email: String = ""
+    @AppStorage("loginStatus") var app_storage_login_status: Bool = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if(app_storage_email == ""){
+            EntryAuthView()
+        }else{
+            if(app_storage_login_status){
+                Home()
+            }else{
+                AuthenticationView()
+            }
         }
-        .padding()
     }
 }
 
